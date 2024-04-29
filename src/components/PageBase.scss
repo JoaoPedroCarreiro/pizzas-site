@@ -1,0 +1,263 @@
+@use "styles/variables";
+
+#floating-menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+
+    width: 180px;
+    min-height: 100%;
+    height: 100% !important;
+
+    background-color: variables.$back-dark-color;
+
+    box-shadow: 0px 0px 7px 5px rgba(0, 0, 0, .2);
+
+    z-index: 10;
+
+    transition: left 0.3s ease;
+
+    button {
+        margin-left: 10px;
+        margin-top: 10px;
+
+        font-size: 48px;
+        color: white;
+
+        transition: color 0.5s ease;
+
+        &:hover {
+            color: variables.$secondary-color;
+        }
+    }
+
+    ul {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        gap: 24px;
+
+        a {
+            font-family: "Yanone Kaffeesatz", sans-serif;;
+            font-size: 1.4rem;
+
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            gap: 3px;
+    
+            color: white;
+
+            transition: color 0.5s ease;
+    
+            i {
+                font-size: 36px;
+            }
+
+            &:hover {
+                color: variables.$secondary-color;
+            }
+        }
+    }
+
+    &[data-show] {
+        left: 0;
+    }
+}
+
+#nav-box {
+    width: 100%;
+    height: variables.$nav-height;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    z-index: 5;
+
+    width: 100%;
+    height: variables.$nav-height;
+
+    background-color: variables.$back-dark-color;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    button {
+        font-size: 32px;
+        color: white;
+
+        display: none;
+
+        transition: color 0.5s ease;
+
+        &:hover {
+            color: variables.$secondary-color;
+        }
+    }
+
+    #lua {
+        img {
+            width: 48px;
+            height: 48px;
+        }
+    }
+
+    ul {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+
+        #li-user {
+            a {
+                border-radius: 50%;
+                border: 2px solid rgb(17, 16, 16);
+                overflow: hidden;
+
+                margin-top: 0;
+
+                transition: border-color 0.5s ease;
+
+                &:hover {
+                    border-color: variables.$secondary-color;
+                }
+            }
+
+            img {
+                width: 32px;
+                height: 32px;
+
+                object-fit: cover;
+            }
+        }
+        
+        #li-login, #li-user {
+            padding-left: 10px;            
+        }
+
+        #li-signup {
+            margin-bottom: 4px;
+            padding: 6px 14px;
+            padding-top: 10px;
+            background-color: variables.$secondary-color;
+
+            border-radius: 20px;
+
+            transition: background-color 0.5s ease;
+            cursor: pointer;
+
+            a:hover {
+                color: white;
+            }
+
+            &:hover {
+                background-color: variables.$primary-color;
+            }
+        }
+
+        a {
+            display: block;
+            font-family: "Yanone Kaffeesatz", sans-serif;
+            font-size: 1.3rem;
+            color: white;
+
+            transition: color 0.5s ease;
+
+            &:hover {
+                color: variables.$secondary-color;
+            }
+        }
+    }
+}
+
+footer {
+    position: relative;
+
+    width: 100%;
+    height: 450px;
+    background-color: variables.$back-dark-color;
+
+    padding: 0 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    gap: 32px;
+
+    #section-contact {
+        position: absolute;
+        top: calc(-1 * variables.$nav-height);
+    }
+
+    #footer-logo {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        gap: 12px;
+
+        img {
+            width: 96px;
+            height: 96px;
+        }
+
+        p {
+            font-size: 1.5rem;
+            font-family: "Yanone Kaffeesatz", sans-serif;
+            color: white;
+        }
+    }
+
+    #contacts {
+        li {
+            margin: 0 auto;
+            width: max-content;
+
+            margin-bottom: 10px;
+
+            a {
+                display: flex;
+                align-items: center;
+
+                font-size: 1rem;
+                font-family: "Lato", sans-serif;
+                color: rgb(196, 196, 196);
+
+                i {
+                    font-size: 1.7rem;
+                    margin-right: 9px;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (width < 490px) {
+    nav {
+        button { 
+            display: block;
+        }
+
+        #lua {
+            display: none;
+        }
+
+        ul {
+            li {
+                display: none;
+            }
+
+            #li-login, #li-signup, #li-user {
+                display: block;
+            }
+        }
+    }
+}

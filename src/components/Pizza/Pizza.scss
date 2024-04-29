@@ -1,0 +1,80 @@
+@use "styles/variables";
+
+$pizza-height: 400px;
+$img-height: 330px;
+
+.pizza {
+    width: variables.$pizza-width;
+    height: $pizza-height;
+    background-color: black;
+
+    img {
+        width: 100%;
+        height: $img-height;
+
+        object-fit: cover;
+    }
+
+    .info {
+        height: calc($pizza-height - $img-height);
+
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0 16px;
+
+        .top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            p {
+                font-family: "Poppins", Sans-serif;
+                font-size: 1.1rem;
+                color: white;
+
+                padding-right: 5px;
+
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+
+            span {
+                color: variables.$secondary-color;
+            }
+        }
+
+        .bottom {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+
+            i {
+                font-size: 14px;
+                color: variables.$secondary-color;
+
+                background-clip: text;
+                -webkit-background-clip: text;
+            }
+
+            p {
+                font-size: 0.875rem;
+                color: variables.$primary-color;
+            }
+        }
+    }
+}
+
+.pizza-unloaded {
+    width: variables.$pizza-width;
+    height: $pizza-height;
+    background-color: transparent;
+}
+
+@media only screen and (width < 360px) {
+    .pizza {
+        width: calc(100vw - 30px);
+        margin: 0 15px;
+    }
+}

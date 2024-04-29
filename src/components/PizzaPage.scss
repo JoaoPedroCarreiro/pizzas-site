@@ -1,0 +1,271 @@
+@use "styles/variables";
+
+#pizza-page {
+    background: url("../assets/table.jpg");
+    background-size: cover;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    #popup {
+        position: absolute;
+        top: 40px;
+        right: -50px;
+
+        transform: translateX(210px);
+
+        width: 250px;
+        height: 100px;
+
+        padding-right: 50px;
+        padding-left: 5px;
+
+        background-color: white;
+
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+
+        box-shadow: 1px 1px 7px 3px rgba(46, 46, 46, 0.7);
+
+        overflow: hidden;
+
+        #loading-popup {
+            width: 0%;
+            height: 3px;
+
+            position: absolute;
+            bottom: 0;
+            left: 0;
+
+            background-color: rgb(112, 112, 112);
+        }
+
+        #popup-title {
+            margin-top: 8px;
+            margin-bottom: 3px;
+            font-weight: 800;
+        }
+    }
+
+    & > div {
+        width: 60%;
+        height: 400px;
+
+        margin: 80px 0;
+    
+        background-color: variables.$back-dark-color;
+        display: flex;
+
+        img {
+            min-width: 50%;
+            height: 100%;
+
+            object-fit: cover;
+            object-position: center center;
+        }
+
+        #division-pizza {
+            min-width: 1px;
+            height: 100%;
+
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        #pizza-content {
+            margin: 20px;
+            width: 100%;
+
+            color: white;
+
+            h1 {
+                font-size: 1.4rem;
+            }
+
+            #ingredients {
+                margin-top: 5px;
+                font-size: 0.8rem;
+
+                color: rgba(255, 255, 255, 0.8);
+            }
+
+            #price-rating {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                flex-wrap: wrap;
+
+                width: 100%;
+
+                #price {
+                    margin: 20px 0;
+                    margin-right: 5px;
+
+                    font-size: 1.6rem;
+                    font-weight: 700;
+
+                    color: variables.$secondary-color;
+                }
+
+                #rating {
+                    display: flex;
+                    align-items: center;
+
+                    gap: 3px;
+
+                    position: relative;
+
+                    & > span {
+                        color: variables.$back-dark-color;
+                        background-color: variables.$secondary-color;
+
+                        padding: 0px 6px;
+
+                        border-radius: 4px;
+                        transform: translateY(1px);
+                    }
+
+                    & > p {
+                        width: max-content;
+                        display: none;
+
+                        position: absolute;
+                        bottom: -8px;
+                        left: 0;
+
+                        transform: translateY(100%);
+
+                        color: rgba(255, 78, 78, 0.7);
+                        font-size: 0.8rem;
+
+                        text-align: start;
+                    }
+
+                    #rate-low-width {
+                        font-size: 20px;
+                        color: variables.$secondary-color;
+
+                        transform: translateY(1px);
+                        padding-left: 3px;
+
+                        display: none;
+                    }
+
+                    #rate {
+                        #bg-1 {
+                            width: 100%;
+    
+                            background-color: variables.$tertiary-color;
+                            background-clip: text;
+    
+                            -webkit-background-clip: text;
+                            color: transparent;
+    
+                            #bg-2 {
+                                width: 0%;
+                                display: flex;
+        
+                                background-color: variables.$secondary-color;
+        
+                                background-clip: text;
+                                -webkit-background-clip: text;
+        
+                                font-size: 20px;
+                                color: transparent;
+        
+                                i {
+                                    background-clip: text;
+                                    -webkit-background-clip: text;
+    
+                                    color: transparent;
+                                }
+                            }
+                        }
+
+                        &:disabled {
+                            #bg-1 {
+                                #bg-2 {
+                                    background-color: variables.$primary-color;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes show {
+    0% {
+        transform: translateX(210px);
+    } 80% {
+        transform: translateX(-10px);
+    } 100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes hide {
+    0% {
+        transform: translateX(0);
+    } 20% {
+        transform: translateX(-15px);
+    } 100% {
+        transform: translateX(210px);
+    }
+}
+
+@keyframes loading {
+    from { width: 0 }
+    to { width: 100%; }
+}
+
+@media only screen and (width <= 1120px) {
+    #pizza-page {
+        & > div {
+            display: flex;
+            flex-direction: column;
+
+            min-height: 500px;
+
+            img {
+                width: 100%;
+                min-height: 300px;
+            }
+
+            #division-pizza {
+                width: 100%;
+                min-height: 1px;
+                max-height: 1px;
+            }
+
+            #pizza-content {
+                width: auto;
+            }
+        }
+    }
+}
+
+@media only screen and (width <= 510px) {
+    #pizza-page {
+        & > div {
+            width: 90%;
+
+            #price-rating {
+                #rating {
+                    #rate-low-width {
+                        // display: block;
+                    }
+
+                    #rate {
+                        // display: none;
+                    }
+                }
+            }
+        }
+    }
+}

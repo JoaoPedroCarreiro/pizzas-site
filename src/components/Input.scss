@@ -1,0 +1,76 @@
+.label-form {
+    font-size: 0.9rem;
+    line-height: 1.2rem;
+
+    color: rgb(71, 71, 71);
+
+    padding-left: 7px;
+
+    align-self: start;
+}
+
+.div-form {
+    position: relative;
+
+    width: 100%;
+
+    margin-bottom: 6px;
+
+    i {
+        font-size: 22px;
+        color: rgba(0, 0, 0, 0.9);
+    }
+
+    .input-icon {
+        position: absolute;
+        top: 11px;
+        left: 8px;
+    }
+
+    .input-form {
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        
+        width: 100%;
+
+        font-size: 0.95rem;
+
+        margin-top: 4px;
+        padding: 9px 7px;
+        padding-left: 35px;
+
+        border-radius: 3px;
+
+        align-self: start;
+
+        &:invalid, &[invalid-field], &[invalid-field-back] {
+            box-shadow: rgba(247, 22, 60, 0.226) 0px 2px 5px -1px, rgba(121, 17, 17, 0.589) 0px 1px 3px -1px;
+        }
+
+        &:invalid + span, &[invalid-field] + span, &[invalid-field-back] + span {
+            opacity: 1;
+        }
+    }
+
+    .input-form#password {
+        padding-right: 32px;
+    }
+
+    .span-form {
+        margin-top: 4px;
+        margin-bottom: 6px;
+        padding-left: 7px;
+    
+        font-size: .8rem;
+    
+        align-self: start;
+    
+        color: rgba(148, 27, 27, 0.7);
+        opacity: 0;
+    }
+
+    button {
+        position: absolute;
+        top: 11px;
+        right: 8px;
+    }
+}

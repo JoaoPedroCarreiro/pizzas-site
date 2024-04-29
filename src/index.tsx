@@ -1,19 +1,30 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import ReactDOM from "react-dom/client"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+import "styles/pizzas-wrapper.scss"
+
+import App from "components/App"
+import Sign from "components/Sign"
+import Usr from "components/Usr"
+import PageBase from "components/PageBase"
+import PizzaPage from "components/PizzaPage"
+import Menu from "components/Menu"
+
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
+
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+    <BrowserRouter>
+        <Routes>
+            <Route path="/">
+                <Route index element={<PageBase><App /></PageBase>} />
+                <Route path="login" element={<Sign type="in" />} />
+                <Route path="signup" element={<Sign type="up" />} />
+                <Route path="menu" element={<PageBase><Menu /></PageBase>} />
+                <Route path="usr/:usr" element={<PageBase><Usr /></PageBase>} />
+                <Route path="pizzas">
+                    <Route path=":pizza" element={<PageBase><PizzaPage /></PageBase>}/>
+                </Route>
+            </Route>
+        </Routes>
+    </BrowserRouter>
+)

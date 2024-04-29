@@ -1,0 +1,7 @@
+@use "styles/variables";
+
+.pizzas-wrapper {
+    display: flex;
+    gap: variables.$wrapper-gap;
+    flex-wrap: wrap;
+}

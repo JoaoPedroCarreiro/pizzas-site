@@ -1,0 +1,15 @@
+* {
+    font-family: Lato, sans-serif;
+}
+
+body::after {
+    content: url("../../src/assets/pizabg.jpg");
+
+    position:absolute;
+
+    width: 0;
+    height: 0;
+
+    overflow: hidden;
+    z-index: -1;
+}
