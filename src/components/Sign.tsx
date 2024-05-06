@@ -101,7 +101,7 @@ const Sign: React.FC<SignProps> = ({ type }) => {
                     password: (password.current as HTMLInputElement).value
                 })
 
-                document.cookie = `token=${data}; SameSite=None; Secure; Max-Age=${10 * 365 * 24 * 60 * 60}`
+                document.cookie = `token=${data}; Max-Age=${10 * 365 * 24 * 60 * 60}`
             } catch (err: any) {
                 type Err = {
                     [msg: string]: () => void
@@ -145,20 +145,20 @@ const Sign: React.FC<SignProps> = ({ type }) => {
                 password: (password.current as HTMLInputElement).value
             })
 
-            document.cookie = `token=${data}; SameSite=None; Secure; Max-Age=${10 * 365 * 24 * 60 * 60}`
+            document.cookie = `token=${data}; Max-Age=${10 * 365 * 24 * 60 * 60}`
         } catch (err: any) {
             if(err.response?.statusText === "Too Many Requests") {
                 (manyReq.current as HTMLParagraphElement).removeAttribute("hidden")
                 return
             }
 
-            if(err.response.data.err === "User doesn't exists") {
+            if(err.response?.data.err === "User doesn't exists") {
                 (username.current as HTMLInputElement).setAttribute("invalid-field-back", "")
                 setUsernameInvalidMessage("User doesn't exists")
                 return
             }
 
-            if(err.response.data.err === "Incorrect Password") {
+            if(err.response?.data.err === "Incorrect Password") {
                 (password.current as HTMLInputElement).setAttribute("invalid-field-back", "")
                 setPasswordInvalidMessage("Incorrect Password")
                 return
