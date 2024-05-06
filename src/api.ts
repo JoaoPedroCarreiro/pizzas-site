@@ -2,7 +2,7 @@ import axios, { AxiosInstance, AxiosResponse } from "axios"
 
 type ApiRes<T> = AxiosResponse<T>
 
-const ENV = "production"
+let ENV = "development"
 
 const api: AxiosInstance = axios.create({
     baseURL: ENV === "production" ? "https://api-pizzas-production.up.railway.app" : "http://localhost:8080",

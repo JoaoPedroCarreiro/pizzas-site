@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 
 import { UsrInfo } from "types"
 
-import api from "api"
+import api, { ApiRes } from "api"
 
 import "./Sign.scss"
 import Input from "./Input"
@@ -95,11 +95,13 @@ const Sign: React.FC<SignProps> = ({ type }) => {
 
         if(type === "up") {
             try {
-                await api.post<UsrInfo>("/signup", {
+                const { data } = await api.post<UsrInfo, ApiRes<string>>("/signup", {
                     email: (email.current as HTMLInputElement).value,
                     username: (username.current as HTMLInputElement).value,
                     password: (password.current as HTMLInputElement).value
                 })
+
+                document.cookie = `token=${data}; SameSite=None; Secure; Max-Age=${10 * 365 * 24 * 60 * 60}`
             } catch (err: any) {
                 type Err = {
                     [msg: string]: () => void
@@ -138,10 +140,12 @@ const Sign: React.FC<SignProps> = ({ type }) => {
         }
 
         try {
-            await api.post<UsrInfo>("/login", {
+            const { data } = await api.post<UsrInfo, ApiRes<string>>("/login", {
                 username: (username.current as HTMLInputElement).value,
                 password: (password.current as HTMLInputElement).value
             })
+
+            document.cookie = `token=${data}; SameSite=None; Secure; Max-Age=${10 * 365 * 24 * 60 * 60}`
         } catch (err: any) {
             if(err.response?.statusText === "Too Many Requests") {
                 (manyReq.current as HTMLParagraphElement).removeAttribute("hidden")
