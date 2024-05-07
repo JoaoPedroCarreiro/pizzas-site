@@ -31,10 +31,7 @@ const PageBase: React.FC<PageBaseProps> = ({ children }) => {
 			for(const cookie of document.cookie.split(";")) {
 				if(cookie.startsWith("token=")) {
 					try {
-                        id = (await api.get<{ id: number }>("/", { headers: {
-                            "Access-Control-Allow-Origin": "http://localhost:8080"
-                        } })).data.id
-                        console.log(id)
+                        id = (await api.post<{ id: number }>("/", cookie.split("token=")[1])).data.id
 					} catch {} finally {
                         try {
                             usr = (await api.get<UsrGet>(`/usr/${id}`)).data
