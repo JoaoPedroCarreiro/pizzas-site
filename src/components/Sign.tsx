@@ -101,7 +101,7 @@ const Sign: React.FC<SignProps> = ({ type }) => {
                     password: (password.current as HTMLInputElement).value
                 })
 
-                document.cookie = `token=${data}; Max-Age=${10 * 365 * 24 * 60 * 60}`
+                document.cookie = `token=${data}; SameSite: Max-Age=${10 * 365 * 24 * 60 * 60}`
             } catch (err: any) {
                 type Err = {
                     [msg: string]: () => void
@@ -145,7 +145,7 @@ const Sign: React.FC<SignProps> = ({ type }) => {
                 password: (password.current as HTMLInputElement).value
             })
 
-            document.cookie = `token=${data}; SameSite: None; Secure; Max-Age=${10 * 365 * 24 * 60 * 60}`
+            document.cookie = `token=${data}; SameSite: Lax; Max-Age=${10 * 365 * 24 * 60 * 60}`
         } catch (err: any) {
             if(err.response?.statusText === "Too Many Requests") {
                 (manyReq.current as HTMLParagraphElement).removeAttribute("hidden")
