@@ -65,7 +65,20 @@ const PizzaPage: React.FC<PizzaPageProps> = () => {
         const x = (Math.floor(event.clientX - rect.left) / event.currentTarget.clientWidth) * 100
 
         try {
-            if(user) await api.post<{ rating: number, pizza: number }>(`/usr/${user.id}/rating`, { rating: Number((x / 20).toFixed(1)), pizza: (pizza as PizzaItem).id })
+            let token = ""
+            for(const cookie of document.cookie.split(";")) {
+                if(cookie.startsWith("token=")) token = cookie.split("token=")[1]
+            }
+
+            if(user)
+                await api.post<{ token: string, rating: number, pizza: number }>(
+                    `/usr/${user.id}/rating`,
+                    {
+                        token,
+                        rating: Number((x / 20).toFixed(1)),
+                        pizza: (pizza as PizzaItem).id
+                    }
+                )
             else throw new Error("Not Logged")
         } catch (err: any) {
             setTimeout(() => setEnabled(true), 3000)
