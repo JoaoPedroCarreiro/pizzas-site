@@ -83,8 +83,13 @@ const UsrLogged: React.FC<UsrLoggedProps> = ({ pageUser }) => {
         setUser({ ...user, username: event.currentTarget.value })
 
         try {
+            let token = ""
+            for(const cookie of document.cookie.split(";")) {
+                if(cookie.startsWith("token=")) token = cookie.split("token=")[1]
+            }
+
             const newUsername = event.currentTarget.value
-            await api.patch<string>(`/usr/${user.id}/username`, { newUsername })
+            await api.patch<string>(`/usr/${user.id}/username`, { token, newUsername })
         } catch (err: any) {
             if(err.response.statusText === "Too Many Requests") {
                 (errMsgUsernameRef.current as HTMLSpanElement).style.display = "block"
@@ -108,8 +113,14 @@ const UsrLogged: React.FC<UsrLoggedProps> = ({ pageUser }) => {
         const file = (event.currentTarget.files as FileList)[0]
 
         try {
+            let token = ""
+            for(const cookie of document.cookie.split(";")) {
+                if(cookie.startsWith("token=")) token = cookie.split("token=")[1]
+            }
+            
             const image = new FormData()
             image.append("image", file)
+            image.append("token", token)
 
             await api.patch(`/usr/${user.id}/img`, image, { headers: { "Content-Type": "multipart/form-data" }}) 
         } catch (err: any) {
