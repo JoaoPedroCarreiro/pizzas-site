@@ -93,7 +93,7 @@ const PizzaPage: React.FC<PizzaPageProps> = () => {
                 <img src={pizza.img} alt={`${pizza.topping} Pizza`} />
                 <div id="division-pizza"></div>
                 <div id="pizza-content">
-                    <h1>{pizza.topping}</h1>
+                    <h1>{pizza.topping} Pizza</h1>
                     <p id="ingredients">{pizza.ingredients}</p>
                     <div id="price-rating">
                         <p id="price">$ {pizza.price}</p>
