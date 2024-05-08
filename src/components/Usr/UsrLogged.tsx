@@ -154,9 +154,14 @@ const UsrLogged: React.FC<UsrLoggedProps> = ({ pageUser }) => {
     }
 
     const deleteAccount = async (): Promise<void> => {
+        let token = ""
+        for(const cookie of document.cookie.split(";")) {
+            if(cookie.startsWith("token=")) token = cookie.split("token=")[1]
+        }
+
         try {
-            if((nameConfirmRef.current as HTMLInputElement).value === pageUser.usr.username) await api.delete(`/usr/${user.id}`)
-        } catch {} finally {
+            if((nameConfirmRef.current as HTMLInputElement).value === pageUser.usr.username) await api.delete(`/usr/${user.id}?token=${token}`)
+        } catch { return } finally {
             logout()
         }
     }
